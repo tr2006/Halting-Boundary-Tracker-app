@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Halting Boundary Tracker</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#315f8c">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- HEADER -->
+
+        <header>
+            <h1>Halting Boundary Tracker</h1>
+ 
+            <p class="subtitle">
+                Turing Machine Simulation Sandbox
+            </p>
+        </header>
+
+
+        <!-- CONTROLS -->
+
+        <div class="controls">
+
+            <label>
+                Initial Tape:
+                <input
+                    type="text"
+                    id="tapeInput"
+                    value="10101"
+                >
+            </label>
+
+
+            <label>
+                Machine:
+                <select id="machineSelect">
+
+                    <option value="halt">
+                        Halting Machine
+                    </option>
+
+                    <option value="loop">
+                        Non-Halting Machine
+                    </option>
+
+                </select>
+            </label>
+
+
+            <label>
+                Maximum K Steps:
+                <input
+                    type="number"
+                    id="stepLimit"
+                    value="10"
+                    min="1"
+                >
+            </label>
+
+
+            <button id="runButton">
+                Run Simulation
+            </button>
+
+
+            <button id="resetButton">
+                Reset
+            </button>
+
+        </div>
+
+
+        <!-- STATUS -->
+
+        <div class="status-box">
+
+            <h2>Simulation Status</h2>
+
+            <div id="status">
+                READY
+            </div>
+
+
+            <div class="info">
+
+                <p>
+                    Current State:
+                    <strong id="currentState">q0</strong>
+                </p>
+
+
+                <p>
+                    Steps:
+                    <strong id="stepCount">0</strong>
+                </p>
+
+            </div>
+
+
+            <!-- BOUNDARY TRACKER -->
+
+            <div class="boundary-section">
+
+                <div class="boundary-title">
+
+                    <span>
+                        Execution Boundary
+                    </span>
+
+                    <strong>
+                        <span id="boundaryCurrent">0</span>
+                        /
+                        <span id="boundaryLimit">10</span>
+                    </strong>
+
+                </div>
+
+
+                <div class="progress-container">
+
+                    <div id="progressBar"></div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- TAPE -->
+
+        <div class="tape-section">
+
+            <h2>Turing Machine Tape</h2>
+
+            <div id="tape">
+
+                <div class="tape-cell head-cell">
+                    1
+                </div>
+
+                <div class="tape-cell">
+                    0
+                </div>
+
+                <div class="tape-cell">
+                    1
+                </div>
+
+                <div class="tape-cell">
+                    0
+                </div>
+
+                <div class="tape-cell">
+                    1
+                </div>
+
+                <div class="tape-cell">
+                    □
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- EXECUTION HISTORY -->
+
+        <div class="history-section">
+
+            <h2>Execution History</h2>
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Step</th>
+                            <th>State</th>
+                            <th>Read</th>
+                            <th>Write</th>
+                            <th>Move</th>
+                            <th>Next State</th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="history">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+
+        <!-- RESULT -->
+
+        <div class="result-box">
+
+            <h2>Result</h2>
+
+            <p id="result">
+                Waiting for simulation...
+            </p>
+
+        </div>
+
+
+        <!-- CONCEPT -->
+
+        <div class="concept-box">
+
+            <h2>How the Boundary Works</h2>
+
+            <p>
+                The Turing Machine is allowed to execute for a maximum
+                of <strong>K steps</strong>.
+            </p>
+
+            <p>
+                If the machine reaches the HALT state before K,
+                the result is <strong>HALTED</strong>.
+            </p>
+
+            <p>
+                If K steps are completed without reaching HALT,
+                the simulator reports <strong>TIMEOUT</strong>.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>  
